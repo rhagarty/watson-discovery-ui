@@ -60,9 +60,7 @@ class Main extends React.Component {
       selectedKeywords,
       selectedEntityTypes,
       // matches panel
-      currentPage,
-      // token for usage metrics
-      sessionToken
+      currentPage
     } = this.props;
 
     // change in state fires re-render of components
@@ -91,8 +89,7 @@ class Main extends React.Component {
       selectedEntityTypes: selectedEntityTypes || new Set(),
       // misc panel
       currentPage: currentPage || '1',  // which page of matches are we showing
-      activeFilterIndex: 0,             // which filter index is expanded/active
-      sessionToken: sessionToken || ''
+      activeFilterIndex: 0              // which filter index is expanded/active
     };
   }
 
@@ -107,10 +104,9 @@ class Main extends React.Component {
    * display a default graph.
    */
   updateDocMetrics(data) {
-    var { sessionToken, documentId } = data;
+    var { documentId } = data;
 
     const qs = queryString.stringify({
-      sessionToken: sessionToken,
       documentId: documentId
     });
 
@@ -199,39 +195,6 @@ class Main extends React.Component {
   }
 
   /**
-   * sortOrderChange - (callback function)
-   * User has changed how to sort the matches (defaut
-   * is by highest score first). Save the value for
-   * all subsequent queries to discovery.
-   */
-  sortOrderChange(event, selection) {
-    const { sortOrder, data } = this.state;
-    if (sortOrder != selection.value) {
-      var sortBy = require('sort-by');
-      var sortedData = data.results.slice();
-
-      // get internal version of the sort key
-      var internalSortKey = '';
-      for (var i=0; i<utils.sortKeys.length; i++) {
-        if (utils.sortKeys[i].sortBy === selection.value) {
-          internalSortKey = utils.sortKeys[i].sortByInt;
-          break;
-        }
-      }
-
-      // sort by internal key
-      sortedData.sort(sortBy(internalSortKey));
-      data.results = sortedData;
-
-      // save off external key in case we do another query to Discovery
-      this.setState({
-        data: data,
-        sortOrder: selection.value
-      });
-    }
-  }
-
-  /**
    * fetchData - build the query that will be passed to the 
    * discovery service.
    */
@@ -295,7 +258,6 @@ class Main extends React.Component {
       })
       .then(json => {
         var data = utils.parseData(json);
-        const sessionToken = data.sessionToken;
         var passages = [];
 
         if (returnPassages) {
@@ -320,8 +282,7 @@ class Main extends React.Component {
           entityTypes: parseEntityTypes(json),
           loading: false,
           numMatches: data.results.length,
-          error: null,
-          sessionToken: sessionToken
+          error: null
         });
         scrollToMain();
       })
@@ -409,7 +370,7 @@ class Main extends React.Component {
    * getMatches - return collection matches to be rendered.
    */
   getMatches() {
-    const { data, currentPage, sessionToken } = this.state;
+    const { data, currentPage } = this.state;
 
     if (!data) {
       return null;
@@ -423,7 +384,6 @@ class Main extends React.Component {
     return (
       <Matches 
         matches={ pageOfMatches }
-        sessionToken= { sessionToken }
         onGetFullReviewRequest={this.updateDocMetrics.bind(this)}
       />
     );
@@ -796,8 +756,6 @@ Main.propTypes = {
   queryType: PropTypes.string,
   returnPassages: PropTypes.bool,
   limitResults: PropTypes.bool,
-  sortOrder: PropTypes.string,
-  sessionToken: PropTypes.string,
   error: PropTypes.object
 };
 

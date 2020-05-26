@@ -29,29 +29,8 @@ export default class Matches extends React.Component {
     super(...props);
 
     this.state = {
-      matches: this.props.matches || null,
-      sessionToken: this.props.sessionToken || ''
+      matches: this.props.matches || null
     };
-  }
-
-  /**
-   * getTitle - format title, setting backgroud color for all 
-   * highlighted words.
-   */
-  getTitle(item) {
-    if (item.highlight.showHighlight && item.highlight.titleIndexes.length > 0) {
-      var str = '<style>hilite {background:#ffffb3;}</style>';
-      item.highlight.titleIndexes.forEach(function(element) {
-        str = str + item.title.substring(0, element.startIdx) +
-          '<hilite>' +
-          item.title.substring(element.startIdx, element.endIdx) +
-          '</hilite>' +
-          item.title.substring(element.endIdx);
-      });
-      return str;
-    } else {
-      return item.title ? item.title : 'No Title';
-    }
   }
 
   /**
@@ -80,43 +59,7 @@ export default class Matches extends React.Component {
   getFile(item) {
     //console.log('FILE = ' + '<a href="' + item.date + '"</a>');
     // return '<a href="https://ibm.ent.box.com/s/x1jevh2i1dsb4bs104353nneybrl514k/file/658558108778" target="_blank">' + item.date + '</a>';
-    return '<a href="file:///Users/rhagarty/Downloads/US43941918.pdf" target="_blank">' + item.date + '</a>';
-  }
-
-  /**
-   * getScore - round up to 4 decimal places.
-   */
-  getScore(item) {
-    var score = '0.0';
-
-    if (item.score) {
-      score = item.score.toFixed(4);
-    }
-    return score;
-  }
-
-  /**
-   * getSentiment - determine which icon to display to represent
-   * positive, negative, and neutral sentiment.
-   */
-  getSentiment(item) {
-    var score = Number(item.sentimentScore).toFixed(2);
-    var color = 'grey';
-    switch (item.sentimentLabel) {
-    case 'negative':
-      color='red';
-      break;
-    case 'positive':
-      color='green';
-      break;
-    }
-
-    return <Label
-      className='sentiment-value'
-      as='a'
-      color={ color }
-      size='tiny'
-      tag>{ score  }</Label>;
+    return '<a href="file:///Users/rhagarty/Downloads/US43941918.pdf" target="_blank">' + item.filename + '</a>';
   }
 
   /**
@@ -156,20 +99,6 @@ export default class Matches extends React.Component {
     </Modal>;
   }
 
-  /**
-   * buttonClicked - user has clicked to see the full review.
-   */
-  buttonClicked(item) {
-    // let our parent know
-    const { sessionToken } = this.state;
-
-    this.props.onGetFullReviewRequest({
-      // params required for Discovery call to generate "user clicked" event
-      sessionToken: sessionToken,
-      documentId: item.id
-    });
-  }
-
   // Important - this is needed to ensure changes to main properties
   // are propagated down to our component. In this case, some other
   // search or filter event has occured which has changed the list of
@@ -198,10 +127,9 @@ export default class Matches extends React.Component {
               {matches.map(item =>
                 <MatchItem
                   key={ item.id }
-                  text={ this.getText(item, item.textBlurb) }
-                  moreButton= { this.getMoreButton(item) }
+                  text={ this.getText(item, item.text) }
                   highlightText={ item.highlightText }
-                  date={ this.getFile(item) }
+                  filename={ this.getFile(item) }
                 />)
               }
             </List>
@@ -215,6 +143,5 @@ export default class Matches extends React.Component {
 // type check to ensure we are called correctly
 Matches.propTypes = {
   matches: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onGetFullReviewRequest: PropTypes.func.isRequired,
-  sessionToken: PropTypes.string.isRequired
+  onGetFullReviewRequest: PropTypes.func.isRequired
 };
