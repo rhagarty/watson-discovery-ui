@@ -199,39 +199,6 @@ class Main extends React.Component {
   }
 
   /**
-   * sortOrderChange - (callback function)
-   * User has changed how to sort the matches (defaut
-   * is by highest score first). Save the value for
-   * all subsequent queries to discovery.
-   */
-  sortOrderChange(event, selection) {
-    const { sortOrder, data } = this.state;
-    if (sortOrder != selection.value) {
-      var sortBy = require('sort-by');
-      var sortedData = data.results.slice();
-
-      // get internal version of the sort key
-      var internalSortKey = '';
-      for (var i=0; i<utils.sortKeys.length; i++) {
-        if (utils.sortKeys[i].sortBy === selection.value) {
-          internalSortKey = utils.sortKeys[i].sortByInt;
-          break;
-        }
-      }
-
-      // sort by internal key
-      sortedData.sort(sortBy(internalSortKey));
-      data.results = sortedData;
-
-      // save off external key in case we do another query to Discovery
-      this.setState({
-        data: data,
-        sortOrder: selection.value
-      });
-    }
-  }
-
-  /**
    * fetchData - build the query that will be passed to the 
    * discovery service.
    */
@@ -796,7 +763,6 @@ Main.propTypes = {
   queryType: PropTypes.string,
   returnPassages: PropTypes.bool,
   limitResults: PropTypes.bool,
-  sortOrder: PropTypes.string,
   sessionToken: PropTypes.string,
   error: PropTypes.object
 };

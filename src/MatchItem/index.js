@@ -37,17 +37,15 @@ const MatchItem = props => (
       </List.Description>
     </List.Content>
     <List.Content>
-      Filename: <span dangerouslySetInnerHTML={{__html: props.date}}></span>
+      Filename: <span dangerouslySetInnerHTML={{__html: props.filename}}></span>
     </List.Content>
   </List.Item>
 );
 
 // type check to ensure we are called correctly
 MatchItem.propTypes = {
-  title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  moreButton: PropTypes.object.isRequired,
-  date: PropTypes.string.isRequired
+  filename: PropTypes.string.isRequired
 };
 
 // export so we are visible to parent
