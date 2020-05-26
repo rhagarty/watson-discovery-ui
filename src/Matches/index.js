@@ -29,8 +29,7 @@ export default class Matches extends React.Component {
     super(...props);
 
     this.state = {
-      matches: this.props.matches || null,
-      sessionToken: this.props.sessionToken || ''
+      matches: this.props.matches || null
     };
   }
 
@@ -100,20 +99,6 @@ export default class Matches extends React.Component {
     </Modal>;
   }
 
-  /**
-   * buttonClicked - user has clicked to see the full review.
-   */
-  buttonClicked(item) {
-    // let our parent know
-    const { sessionToken } = this.state;
-
-    this.props.onGetFullReviewRequest({
-      // params required for Discovery call to generate "user clicked" event
-      sessionToken: sessionToken,
-      documentId: item.id
-    });
-  }
-
   // Important - this is needed to ensure changes to main properties
   // are propagated down to our component. In this case, some other
   // search or filter event has occured which has changed the list of
@@ -158,6 +143,5 @@ export default class Matches extends React.Component {
 // type check to ensure we are called correctly
 Matches.propTypes = {
   matches: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onGetFullReviewRequest: PropTypes.func.isRequired,
-  sessionToken: PropTypes.string.isRequired
+  onGetFullReviewRequest: PropTypes.func.isRequired
 };

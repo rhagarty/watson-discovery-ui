@@ -100,11 +100,10 @@ function createServer() {
   const server = require('./express');
 
   server.get('/api/createEvent', (req, res) => {
-    const { sessionToken, documentId } = req.query;
-    console.log('sessionToken: ' + sessionToken);
+    const { documentId } = req.query;
     // console.log('IN api/metrics');
 
-    var discoEventsParams = discoEvents.createEvent(documentId, sessionToken);
+    var discoEventsParams = discoEvents.createEvent(documentId);
 
     discovery.createEvent(discoEventsParams)
       .then(response => res.json(response))
@@ -225,7 +224,6 @@ function createServer() {
             entityTypes: json,
             searchQuery,
             numMatches: matches.results.length,
-            sessionToken: json.result.session_token,
             error: null
           }
         );
@@ -266,8 +264,7 @@ function createServer() {
             concepts: results,
             keywords: results,
             entityTypes: results,
-            numMatches: matches.results.length,
-            sessionToken: results.result.session_token
+            numMatches: matches.results.length
           });
     
           resolve(results);
