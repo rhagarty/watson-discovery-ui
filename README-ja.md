@@ -69,7 +69,7 @@ Watson Discovery Service を利用する最大の利点は、コグニティブ�
 
 ## IBM Cloudへのデプロイ
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/watson-discovery-ui.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/rhagarty/watson-discovery-ui.git)
 
 1. 上の `Deploy to IBM Cloud` ボタンを押し、`Deploy` をクリックします。
 
@@ -93,7 +93,7 @@ Watson Discovery Service を利用する最大の利点は、コグニティブ�
 <a name="1-clone-the-repo"></a>
 ### 1. リポジトリーを複製する
 ```
-$ git clone https://github.com/IBM/watson-discovery-ui
+$ git clone https://github.com/rhagarty/watson-discovery-ui
 ```
 
 <a name="2-create-ibm-cloud-services"></a>
