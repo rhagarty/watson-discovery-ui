@@ -1,8 +1,4 @@
 ---
-declared-services:
-  wdui-discovery-service:
-    label: discovery
-    plan: lite
 applications:
 - path: .
   name: watson-discovery-ui
@@ -10,7 +6,5 @@ applications:
   memory: 512M
   instances: 1
   random-route: false
-  services:
-  - wdui-discovery-service
 env:
   OPTIMIZE_MEMORY: true
