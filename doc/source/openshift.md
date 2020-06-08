@@ -18,7 +18,7 @@ You will need a running OpenShift cluster, or OKD cluster. You can provision [Op
 ## 1. Clone the repo
 
 ```bash
-git clone https://github.com/IBM/watson-discovery-ui
+git clone https://github.com/rhagarty/watson-discovery-ui
 ```
 
 ## 2. Create your Watson Discovery service
@@ -67,7 +67,7 @@ Once the enrichments are selected, use the **Apply changes to collection** butto
 
   ![Choose Node.js](https://raw.githubusercontent.com/IBM/pattern-utils/master/openshift/openshift-choose-nodejs.png)
 
-* Give your app a name and add `https://github.com/IBM/watson-discovery-ui` for the github repo, then click `Create`.
+* Give your app a name and add `https://github.com/rhagarty/watson-discovery-ui` for the github repo, then click `Create`.
 
   ![Add github repo](https://raw.githubusercontent.com/IBM/pattern-utils/master/openshift/openshift-add-github-repo.png)
 
@@ -112,4 +112,4 @@ Go to the `Applications` tab, choose `Deployments` to view the status of your ap
 * From the OpenShift or OKD UI, under `Applications` -> `Routes` you will see your app. Click on the `Hostname`to see your Watson Discovery UI app in action.
 * Save this URL.
 
-[![return](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/return.png)](https://github.com/IBM/watson-discovery-ui#deployment-options)
+[![return](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/return.png)](https://github.com/rhagarty/watson-discovery-ui#deployment-options)

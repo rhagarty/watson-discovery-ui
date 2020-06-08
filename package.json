@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IBM/watson-discovery-ui.git"
+    "url": "https://github.com/rhagarty/watson-discovery-ui.git"
   },
   "scripts": {
     "start": "node --max_old_space_size=512 app.js",

@@ -9,7 +9,7 @@ This document shows how to run the `watson-discovery-ui` application using Cloud
 ## Steps
 
 <p align="center">
-    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/watson-discovery-ui">
+    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/rhagarty/watson-discovery-ui">
     <img src="https://cloud.ibm.com/devops/setup/deploy/button_x2.png" alt="Deploy to IBM Cloud">
     </a>
 </p>
@@ -30,4 +30,4 @@ This document shows how to run the `watson-discovery-ui` application using Cloud
 
 > NOTE: To save on memory when running in the IBM Cloud, only 300 of the available 1000 reviews will be loaded into the Watson Discovery service. If you choose to manually add the additional reviews to your Discovery collection after the app has been deployed, you will need to stop and re-start the app to view them.
 
-[![return](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/return.png)](https://github.com/IBM/watson-discovery-ui#deployment-options)
+[![return](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/return.png)](https://github.com/rhagarty/watson-discovery-ui#deployment-options)
